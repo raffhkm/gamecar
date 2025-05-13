@@ -1,66 +1,248 @@
-body {
-  margin: 0;
-  background: #333;
-  font-family: sans-serif;
+/* Reset & Global Styling */
+* {
+  box-sizing: border-box;
 }
-@media (min-width: 600px) {
-  #gameArea {
-    width: 400px;
-    height: 600px;
-    margin: 30px auto;
-    border: 2px solid white;
-  }
-  html, body {
+
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: #333;
+  font-family: sans-serif;
 }
+
+/* Game Area */
 #gameArea {
   width: 90vw;
-  height: 80vh;
+  height: 90vh;
   background: #222;
   position: relative;
-  margin: 0;
+  margin: auto;
   overflow: hidden;
-  border: none;
+  border: 2px solid white;
 }
+
+/* Car */
 .car {
-  width: 50px;
-  height: 100px;
+  width: 12vw;
+  height: 24vw;
   background-image: url('car.png');
   background-size: cover;
   position: absolute;
-  top: 490px;
-  left: 175px;
+  top: 80vh;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
   transition: left 0.2s ease, top 0.2s ease;
 }
-#shopModal {
-  position: fixed;
+
+/* Obstacle */
+.obstacle, .object-side {
+  width: 12vw;
+  height: 24vw;
+  background-image: url('obstacle.png');
+  background-size: cover;
+  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+/* Line */
+.line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2vw;
+  height: 16vh;
+  background: white;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Start Screen */
+#startScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 40;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.shop-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+#startScreen > * {
+  margin-bottom: 20px;
 }
 
+/* Buttons */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #15fa00;
+  color: rgb(0, 0, 0);
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#resetDataButton {
+  background-color: #ff5733;
+}
+#resetDataButton:hover {
+  background-color: #e04e2b;
+}
+
+/* Selects */
+#carSelect, #levelSelect {
+  width: 80vw;
+  max-width: 200px;
+  padding: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Score & Coins */
+#score, #coinCount {
+  position: absolute;
+  font-size: 5vw;
+  color: gold;
+  font-weight: bold;
+  z-index: 20;
+}
+#score { top: 10px; left: 10px; color: white; }
+#coinCount { top: 10px; right: 20px; }
+
+/* Game Over */
+#gameOver {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 5vw;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 30;
+}
+#gameOver button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #f44336;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Controls */
+#controls {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#controls button {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  margin: 5px;
+  border: none;
+  background: #444;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.horizontal {
+  display: flex;
+  gap: 10px;
+}
+
+/* Power-ups & Shield */
+.power-up, .shield {
+  position: absolute;
+  width: 12vw;
+  height: 12vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.shielded {
+  border: 3px solid rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  animation: shieldGlow 1.5s infinite;
+}
+
+@keyframes shieldGlow {
+  0% { box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.8); }
+  50% { box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.6); }
+  100% { box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.8); }
+}
+
+/* Backgrounds */
+#backgroundCity, #backgroundNature {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-y;
+  background-size: cover;
+  z-index: -1;
+}
+#backgroundCity { background-image: url('city.png'); top: 0; }
+#backgroundNature { background-image: url('nature.png'); top: -100%; }
+
+/* Explosion */
+#explosion {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: none;
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* Shop Modal */
+#shopModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+#shopModal .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* Shop Layout */
 #shop {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
   padding: 20px;
   background-color: #121212;
@@ -79,30 +261,25 @@ body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
   transition: transform 0.2s ease;
 }
-
 .shop-item:hover {
   transform: scale(1.05);
 }
-
 .shop-item img {
   width: 100px;
   height: 60px;
   object-fit: contain;
   margin-bottom: 10px;
 }
-
 .shop-item h3 {
   font-size: 16px;
   margin: 8px 0 4px;
   color: #f1f1f1;
 }
-
 .shop-item p {
   margin: 0;
   font-size: 14px;
   color: #ccc;
 }
-
 .shop-item button {
   margin-top: 10px;
   background-color: #2ecc71;
@@ -114,297 +291,9 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
-.shop-item button:hover {
-  background-color: #27ae60;
-}
-
-
-
-.shop-item button:disabled {
-  background-color: #ccc;
-
-}
-/* Styling untuk tombol yang menunjukkan pilihan */
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #15fa00;
-  color: rgb(0, 0, 0);
-  margin: 10px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* Mengatur layout untuk form pemilihan mobil, shop, level, reset data */
-#startScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-#startScreen > * {
-  margin-bottom: 20px;
-}
-
-/* Memastikan elemen dropdown terlihat jelas */
-#carSelect, #levelSelect {
-  width: 200px;
-  padding: 8px;
-  font-size: 16px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  text-align: center;
-}
-
-/* Styling untuk modal Shop */
-#shopModal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-}
-
-#shopModal .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-  text-align: center;
-}
-
-/* Menata tombol Reset Data */
-#resetDataButton {
-  background-color: #ff5733;
-}
-
-#resetDataButton:hover {
-  background-color: #e04e2b;
-}
-
 .shop-item button:hover {
   background-color: #d2ff09;
 }
-
-.power-up {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-/* Menambahkan border dan efek cahaya pada mobil saat shield aktif */
-.shielded {
-  border: 3px solid rgba(0, 255, 0, 0.5); /* Border hijau */
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Efek cahaya */
-  animation: shieldGlow 1.5s infinite; /* Menambahkan animasi cahaya */
-}
-
-/* Animasi glow pada shield */
-@keyframes shieldGlow {
-  0% {
-    box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.8);
+.shop-item button:disabled {
+  background-color: #ccc;
   }
-  50% {
-    box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.8);
-  }
-}
-
-.obstacle {
-  width: 50px;
-  height: 100px;
-  background-image: url('obstacle.png');
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  z-index: 5;
-}
-
-.line {
-  position: absolute;
-  left: 195px;
-  width: 10px;
-  height: 100px;
-  background: white;
-  opacity: 0.6;
-  z-index: 1;
-}
-
-#startScreen {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 40;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#startButton {
-  padding: 15px 30px;
-  font-size: 20px;
-  background: limegreen;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-#controls {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#controls button {
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  margin: 5px;
-  border: none;
-  background: #444;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.horizontal {
-  display: flex;
-  gap: 10px;
-}
-
-#score {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: white;
-  font-size: 20px;
-  z-index: 20;
-}
-
-#gameOver {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: red;
-  font-size: 25px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  z-index: 30;
-}
-
-#gameOver button {
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #f44336;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-}
-
-.shield {
-  width: 50px;
-  height: 50px;
-  background-image: url('shield-icon.png');
-  background-size: cover;
-  position: absolute;
-}
-#backgroundCity, #backgroundNature {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat-y;
-  background-size: cover;
-  z-index: -1; /* Pastikan berada di belakang elemen game */
-}
-
-#backgroundCity {
-  background-image: url('city.png');
-  top: 0;
-}
-
-#backgroundNature {
-  background-image: url('nature.png');
-  top: -600px; /* Mulai dari posisi berbeda */
-}
-
-#explosion {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  display: none;
-  z-index: 25;
-  pointer-events: none;
-}
-#coinCount {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 20px;
-  color: gold;
-  font-weight: bold;
-}
-.coin {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: url('coin.png');
-  background-size: cover;
-}
-
-.object-side {
-  position: absolute;
-  width: 60px;
-  height: 100px;
-  z-index: 2;
-  background-size: cover;
-}
-@media (max-width: 600px) {
-  .car, .obstacle {
-    width: 12vw;
-    height: 24vw;
-  }
-
-  #controls button {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
-
-  #gameArea {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border: none;
-  }
-
-  #shopModal .modal-content {
-    width: 90%;
-  }
-}
