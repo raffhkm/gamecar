@@ -256,8 +256,8 @@ button:hover {
 
 #controls {
   position: fixed;
-  top: 60%;
-  left: 60%;
+  top: 40%;
+  left: 40%;
   transform: translate(-50%, -50%);
   z-index: 100;
   display: flex;
@@ -274,6 +274,15 @@ button:hover {
   color: white;
   border-radius: 50%;
   cursor: pointer;
+}
+.middle-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.spacer {
+  width: 80px; /* untuk menjaga jarak antara kiri dan kanan */
 }
 
 .horizontal {
