@@ -265,8 +265,8 @@ button:hover {
   align-items: center;
 }
 #controls button {
-  width: 160px;
-  height: 160px;
+  width: 60px;
+  height: 60px;
   font-size: 24px;
   margin: 5px;
   border: none;
