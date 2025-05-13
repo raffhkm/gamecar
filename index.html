@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Game Mobil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameArea">
+    <div id="backgroundCity"></div>
+    <div id="backgroundNature"></div>
+    <div class="line" style="top: 0px;"></div>
+    <div class="line" style="top: 150px;"></div>
+    <div class="line" style="top: 300px;"></div>
+    <div class="line" style="top: 450px;"></div>
+    <div id="shieldTimer" style="position: absolute; top: 100px; left: 100px; color: yellow; font-weight: bold; display: none;">
+      Shield habis dalam 5 detik
+    </div>
+    <div id="coinCount">Koin: 0</div>
+    <div id="score">Score: 0</div>
+    <div id="gameOver" style="display: none;">
+      <div>GAME OVER!</div>
+      <button id="restartButton">Coba Lagi</button>
+    </div>
+    <img id="explosion" src="explosion.png" />
+    <div class="car" id="car"></div>
+    <div id="startScreen">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <button id="startButton">Mulai Game</button>
+        <label for="carSelect" style="color: white; font-size: 18px; margin-top: 20px;">Pilih Mobil:</label>
+        <select id="carSelect" style="padding: 10px; font-size: 16px; margin-top: 5px;">
+          <option value="car1.png">Car 1</option>
+          <option value="car2.png">Car 2</option>
+          <option value="car3.png">Car 3</option>
+        </select>
+      
+        <button id="shopButton">Shop</button>
+<div id="shopModal" style="display:none;">
+  <h2>Toko</h2>
+  <div id="shopItems"></div>
+  <button onclick="closeShop()">Tutup</button>
+</div>
+<div id="shopModal" style="display: none;">
+  <div class="shop-container">
+    <h2>Shop</h2>
+    <div id="shopItems" class="shop-items">
+      <!-- Items akan ditambahkan di sini -->
+    </div>
+    <button onclick="closeShop()">Tutup</button>
+  </div>
+  <div id="shop">
+  <div class="shop-item">
+    <img src="img/car1.png" alt="Mobil Merah">
+    <h3>Mobil Merah</h3>
+    <p>50 Koin</p>
+    <button onclick="beliMobil('car1')">Beli</button>
+  </div>
+  <div class="shop-item">
+    <img src="img/car2.png" alt="Mobil Kuning">
+    <h3>Mobil Kuning</h3>
+    <p>100 Koin</p>
+    <button onclick="beliMobil('car2')">Beli</button>
+  </div>
+  <div class="shop-item">
+    <img src="img/magnet.png" alt="Magnet">
+    <h3>Magnet (5 dtk)</h3>
+    <p>50 Koin</p>
+    <button onclick="beliItem('magnet')">Beli</button>
+  </div>
+  <div class="shop-item">
+    <img src="img/upshield.png" alt="Shield">
+    <h3>Shield Lebih Lama</h3>
+    <p>75 Koin</p>
+    <button onclick="beliItem('shieldUpgrade')">Beli</button>
+  </div>
+  <div class="shop-item">
+    <img src="img/nitro.png" alt="Nitro Boost">
+    <h3>Nitro Boost</h3>
+    <p>100 Koin</p>
+    <button onclick="beliItem('nitroBoost')">Beli</button>
+  </div>
+</div>
+
+
+</div>
+        <label for="levelSelect">Pilih Level:</label>
+        <select id="levelSelect">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <button id="selectedLevelButton">Pilih Level</button>
+        <button id="resetButton">Reset Data</button>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="up">↑</button>
+    <div class="horizontal">
+      <button id="left">←</button>
+      <button id="down">↓</button>
+      <button id="right">→</button>
+    </div>
+  </div>
+  
+  <audio id="bgMusic" src="backsound.mp3" loop></audio>
+  <audio id="moveSound" src="wave.mp3"></audio>
+  <audio id="crashSound" src="explosion.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
