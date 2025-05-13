@@ -33,7 +33,7 @@ coinCountDisplay.textContent = "Koin: " + coins;
 
 const shopData = [
   { id: "car2", name: "Mobil Merah", price: 50, img: "car2.png" },
-  { id: "car3", name: "Mobil Kuning", price: 100, img: "car3.png" },
+  { id: "car3", name: "Mobil Kuning", price: 75, img: "car3.png" },
   { id: "upgrade_shield", name: "Shield Lebih Lama 2 Detik", price: 35, img: "upshield.png", type: "upgrade" },
 ];
 
@@ -150,7 +150,7 @@ function startGame() {
   explosion.style.display = "none";
   gameOverText.style.display = "none";
   startScreen.style.display = "none";
-  shieldInterval = setInterval(createShieldPowerUp, 10000);
+  shieldInterval = setInterval(createShieldPowerUp, 7000);
   shieldTimer.textContent = "";
   shieldTimer.style.display = "none";
   coinInterval = setInterval(createCoin, 4000);
