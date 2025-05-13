@@ -256,8 +256,8 @@ button:hover {
 
 #controls {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 60%;
+  left: 60%;
   transform: translate(-50%, -50%);
   z-index: 100;
   display: flex;
@@ -265,8 +265,8 @@ button:hover {
   align-items: center;
 }
 #controls button {
-  width: 60px;
-  height: 60px;
+  width: 160px;
+  height: 160px;
   font-size: 24px;
   margin: 5px;
   border: none;
