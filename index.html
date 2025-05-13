@@ -2,20 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Game Mobil</title>
   <link rel="stylesheet" href="style.css" />
-  <script>
-  function setFullHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-  window.addEventListener('resize', setFullHeight);
-  setFullHeight();
-</script>
-
 </head>
-  
 <body>
   <div id="gameArea">
     <div id="backgroundCity"></div>
@@ -27,7 +16,7 @@
     <div id="shieldTimer" style="position: absolute; top: 100px; left: 100px; color: yellow; font-weight: bold; display: none;">
       Shield habis dalam 5 detik
     </div>
-    <div id="coinCount">Koin: 0</div>
+    <div id="coinCount">Koin: 100000</div>
     <div id="score">Score: 0</div>
     <div id="gameOver" style="display: none;">
       <div>GAME OVER!</div>
