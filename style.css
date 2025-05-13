@@ -10,6 +10,11 @@ body {
     margin: 30px auto;
     border: 2px solid white;
   }
+  html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 #gameArea {
   width: 100vw;
