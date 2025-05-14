@@ -142,7 +142,7 @@ function startGame() {
   bgMusic.play();
   gameRunning = true;
   score = 0;
-  carLeft = 175;
+  carLeft = 225;
   carTop = 490;
   updateCarPosition();
   car.style.backgroundImage = `url('${selectedCar}')`;
@@ -195,9 +195,9 @@ function moveCar(dir) {
   moveSound.currentTime = 0;
   moveSound.play();
   if (dir === "left" && carLeft > 0) carLeft -= 50;
-  else if (dir === "right" && carLeft < 400) carLeft += 50;
+  else if (dir === "right" && carLeft < 475) carLeft += 50;
   else if (dir === "up" && carTop > 0) carTop -= 50;
-  else if (dir === "down" && carTop < 550) carTop += 50;
+  else if (dir === "down" && carTop < 500) carTop += 50;
   updateCarPosition();
 }
 
