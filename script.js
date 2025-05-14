@@ -116,7 +116,7 @@ btnRight.addEventListener("click", () => moveCar("right"));
 document.addEventListener("keydown", (e) => {
   if (!gameRunning) return;
   if (e.key === "ArrowLeft" && carLeft > 0) carLeft -= 25;
-  else if (e.key === "ArrowRight" && carLeft < 350) carLeft += 25;
+  else if (e.key === "ArrowRight" && carLeft < 345) carLeft += 25;
   else if (e.key === "ArrowUp" && carTop > 0) carTop -= 25;
   else if (e.key === "ArrowDown" && carTop < 500) carTop += 25;
   moveSound.currentTime = 0;
@@ -195,7 +195,7 @@ function moveCar(dir) {
   moveSound.currentTime = 0;
   moveSound.play();
   if (dir === "left" && carLeft > 0) carLeft -= 50;
-  else if (dir === "right" && carLeft < 300) carLeft += 50;
+  else if (dir === "right" && carLeft < 345) carLeft += 50;
   else if (dir === "up" && carTop > 0) carTop -= 50;
   else if (dir === "down" && carTop < 500) carTop += 50;
   updateCarPosition();
